@@ -6,7 +6,7 @@
 
         <v-card-text>
             <div>
-                <String label="ReservationId" v-model="item.reservationId" :editMode="editMode" @change="change" />
+                <Number label="ReservationId" v-model="item.reservationId" :editMode="editMode" @change="change" />
             </div>
             <div>
                 <Date label="StartDate" v-model="item.startDate" :editMode="editMode" @change="change" />

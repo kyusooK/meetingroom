@@ -92,7 +92,7 @@
             this.values = temp.data._embedded.reservations;
 
             this.newValue = {
-                'reservationId': '',
+                'reservationId': 0,
                 'startDate': '2024-12-27',
                 'endDate': '2024-12-27',
                 'meetingName': '',

@@ -104,7 +104,7 @@
             me.values = temp.data._embedded.reservations;
             
             me.newValue = {
-                'reservationId': '',
+                'reservationId': 0,
                 'startDate': '2024-12-27',
                 'endDate': '2024-12-27',
                 'meetingName': '',
