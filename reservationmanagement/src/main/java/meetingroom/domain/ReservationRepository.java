@@ -14,7 +14,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
     path = "reservations"
 )
 public interface ReservationRepository
-    extends PagingAndSortingRepository<Reservation, String> {
+    extends PagingAndSortingRepository<Reservation, Long> {
     @Query(
         value = "select reservation " +
         "from Reservation reservation " +

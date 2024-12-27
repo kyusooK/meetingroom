@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class CancelReservationCommand {
 
-    private String reservationId;
+    private Long reservationId;
     private ReservationStatus reservationStatus;
 }

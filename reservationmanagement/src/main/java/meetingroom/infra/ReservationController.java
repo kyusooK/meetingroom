@@ -26,7 +26,7 @@ public class ReservationController {
         produces = "application/json;charset=UTF-8"
     )
     public Reservation createReservation(
-        @PathVariable(value = "id") String id,
+        @PathVariable(value = "id") Long id,
         @RequestBody CreateReservationCommand createReservationCommand,
         HttpServletRequest request,
         HttpServletResponse response
@@ -52,7 +52,7 @@ public class ReservationController {
         produces = "application/json;charset=UTF-8"
     )
     public Reservation cancelReservation(
-        @PathVariable(value = "id") String id,
+        @PathVariable(value = "id") Long id,
         @RequestBody CancelReservationCommand cancelReservationCommand,
         HttpServletRequest request,
         HttpServletResponse response

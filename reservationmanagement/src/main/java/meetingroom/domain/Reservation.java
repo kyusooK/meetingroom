@@ -18,7 +18,8 @@ import meetingroom.domain.ReservationModified;
 public class Reservation {
 
     @Id
-    private String reservationId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long reservationId;
 
     private Date startDate;
 
@@ -41,9 +42,6 @@ public class Reservation {
 
     @PostPersist
     public void onPostPersist() {
-        ReservationModified reservationModified = new ReservationModified(this);
-        reservationModified.publishAfterCommit();
-
         MeetingRoomRegistered meetingRoomRegistered = new MeetingRoomRegistered(
             this
         );
@@ -52,6 +50,12 @@ public class Reservation {
 
     @PrePersist
     public void onPrePersist() {}
+
+    @PreUpdate
+    public void onPreUpdate() {
+        ReservationModified reservationModified = new ReservationModified(this);
+        reservationModified.publishAfterCommit();
+    }
 
     public static ReservationRepository repository() {
         ReservationRepository reservationRepository = ReservationmanagementApplication.applicationContext.getBean(

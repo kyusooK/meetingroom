@@ -9,6 +9,6 @@ import meetingroom.infra.AbstractEvent;
 @ToString
 public class ReservationCancelled extends AbstractEvent {
 
-    private String reservationId;
+    private Long reservationId;
     private Object reservationStatus;
 }

@@ -11,7 +11,7 @@ import meetingroom.infra.AbstractEvent;
 @ToString
 public class MeetingRoomRegistered extends AbstractEvent {
 
-    private String reservationId;
+    private Long reservationId;
     private String lacation;
     private ReservationStatus reservationStatus;
     private MeetingRoomId meetingRoomId;
