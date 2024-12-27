@@ -9,6 +9,7 @@ import javax.persistence.*;
 import lombok.Data;
 import meetingroom.ReservationmanagementApplication;
 import meetingroom.domain.MeetingRoomRegistered;
+import meetingroom.domain.ReservationModified;
 
 @Entity
 @Table(name = "Reservation_table")
@@ -40,6 +41,9 @@ public class Reservation {
 
     @PostPersist
     public void onPostPersist() {
+        ReservationModified reservationModified = new ReservationModified(this);
+        reservationModified.publishAfterCommit();
+
         MeetingRoomRegistered meetingRoomRegistered = new MeetingRoomRegistered(
             this
         );
@@ -64,15 +68,6 @@ public class Reservation {
 
         ReservationCreated reservationCreated = new ReservationCreated(this);
         reservationCreated.publishAfterCommit();
-    }
-
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
-    public void modifyReservation() {
-        //implement business logic here:
-
-        ReservationModified reservationModified = new ReservationModified(this);
-        reservationModified.publishAfterCommit();
     }
 
     //>>> Clean Arch / Port Method

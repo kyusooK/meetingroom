@@ -24,14 +24,6 @@ public class ReservationHateoasProcessor
             Link
                 .of(
                     model.getRequiredLink("self").getHref() +
-                    "/modifyreservation"
-                )
-                .withRel("modifyreservation")
-        );
-        model.add(
-            Link
-                .of(
-                    model.getRequiredLink("self").getHref() +
                     "/cancelreservation"
                 )
                 .withRel("cancelreservation")
