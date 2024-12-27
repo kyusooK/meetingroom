@@ -1,15 +1,21 @@
 package meetingroom.domain;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import javax.persistence.*;
+
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
+
 import lombok.Data;
 import meetingroom.ReservationmanagementApplication;
-import meetingroom.domain.MeetingRoomRegistered;
-import meetingroom.domain.ReservationModified;
 
 @Entity
 @Table(name = "Reservation_table")
@@ -27,7 +33,7 @@ public class Reservation {
 
     private String meetingName;
 
-    private String lacation;
+    private String location;
 
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
@@ -92,29 +98,15 @@ public class Reservation {
 
     //<<< Clean Arch / Port Method
     public static void registerMeetingRoom(RoomCreated roomCreated) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
         Reservation reservation = new Reservation();
+        reservation.setRoomId(roomCreated.getId());
+        reservation.setMeetingName(roomCreated.getRoomName());
+        reservation.setLocation(roomCreated.getLocation());
+        reservation.setReservationStatus(ReservationStatus.RESERVED);
         repository().save(reservation);
 
         MeetingRoomRegistered meetingRoomRegistered = new MeetingRoomRegistered(reservation);
         meetingRoomRegistered.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-
-        repository().findById(roomCreated.get???()).ifPresent(reservation->{
-            
-            reservation // do something
-            repository().save(reservation);
-
-            MeetingRoomRegistered meetingRoomRegistered = new MeetingRoomRegistered(reservation);
-            meetingRoomRegistered.publishAfterCommit();
-
-         });
-        */
 
     }
     //>>> Clean Arch / Port Method
