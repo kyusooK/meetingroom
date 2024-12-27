@@ -11,12 +11,9 @@ import meetingroom.infra.AbstractEvent;
 @ToString
 public class ReservationAuthorized extends AbstractEvent {
 
-    private Long userId;
-    private Long roomId;
-    private DateTime startTime;
-    private DateTime endTime;
-    private Long proxyUserId;
-    private Boolean authorizationStatus;
+    private String userId;
+    private String name;
+    private String rank;
 
     public ReservationAuthorized(User aggregate) {
         super(aggregate);
