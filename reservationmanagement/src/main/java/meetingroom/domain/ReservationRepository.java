@@ -18,7 +18,7 @@ public interface ReservationRepository
     @Query(
         value = "select reservation " +
         "from Reservation reservation " +
-        "where(:meetingRoomId is null or reservation.meetingRoomId = :meetingRoomId)"
+        "where(:roomId is null or reservation.roomId = :roomId) and (:roomName is null or reservation.roomName like %:roomName%)"
     )
-    Reservation getMeetingRoom(MeetingRoomId meetingRoomId);
+    Reservation getMeetingRoom(Long roomId, String roomName);
 }

@@ -6,5 +6,6 @@ import lombok.Data;
 @Data
 public class GetMeetingRoomQuery {
 
-    private MeetingRoomId meetingRoomId;
+    private Long roomId;
+    private String roomName;
 }
