@@ -14,7 +14,8 @@ public class MeetingRoomRegistered extends AbstractEvent {
     private Long reservationId;
     private String lacation;
     private ReservationStatus reservationStatus;
-    private MeetingRoomId meetingRoomId;
+    private Long roomId;
+    private String roomName;
 
     public MeetingRoomRegistered(Reservation aggregate) {
         super(aggregate);

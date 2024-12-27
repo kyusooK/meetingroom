@@ -37,8 +37,9 @@ public class Reservation {
     @Embedded
     private FacilityRequestId facilityRequestId;
 
-    @Embedded
-    private MeetingRoomId meetingRoomId;
+    private Long roomId;
+
+    private String roomName;
 
     @PostPersist
     public void onPostPersist() {

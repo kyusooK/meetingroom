@@ -19,7 +19,8 @@ public class ReservationCreated extends AbstractEvent {
     private ReservationStatus reservationStatus;
     private String userId;
     private FacilityRequestId facilityRequestId;
-    private MeetingRoomId meetingRoomId;
+    private Long roomId;
+    private String roomName;
 
     public ReservationCreated(Reservation aggregate) {
         super(aggregate);

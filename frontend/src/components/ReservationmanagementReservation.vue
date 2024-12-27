@@ -16,7 +16,7 @@
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
-            <Number v-if="editMode" label="ReservationId" v-model="value.reservationId" :editMode="editMode" :inputUI="''"/>
+            <String v-if="editMode" label="ReservationId" v-model="value.reservationId" :editMode="editMode" :inputUI="''"/>
             <Date label="대여시작시간" v-model="value.startDate" :editMode="editMode" :inputUI="''"/>
             <Date label="대여종료시간" v-model="value.endDate" :editMode="editMode" :inputUI="''"/>
             <String label="회의명" v-model="value.meetingName" :editMode="editMode" :inputUI="''"/>
@@ -43,7 +43,7 @@
                     text
                     @click="save"
                 >
-                    예약 변경
+                저장
                 </v-btn>
                 <v-btn
                     color="primary"
@@ -79,6 +79,14 @@
                     @createReservation="createReservation"
                 ></CreateReservationCommand>
             </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="modifyReservation"
+            >
+                ModifyReservation
+            </v-btn>
             <v-btn
                 v-if="!editMode"
                 color="primary"
