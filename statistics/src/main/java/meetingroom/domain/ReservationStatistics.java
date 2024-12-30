@@ -54,15 +54,14 @@ public class ReservationStatistics {
     ) {
         //implement business logic here:
 
-        /** Example 1:  new item 
         ReservationStatistics reservationStatistics = new ReservationStatistics();
+        reservationStatistics.setRoomId(reservationCreated.getRoomId());
+        reservationStatistics.setReservedCount(reservationStatistics.getReservedCount() + 1);
+        reservationStatistics.setReservationStatus(ReservationStatus.RESERVED);
         repository().save(reservationStatistics);
 
         MeetingRoomReservationAnalyzed meetingRoomReservationAnalyzed = new MeetingRoomReservationAnalyzed(reservationStatistics);
         meetingRoomReservationAnalyzed.publishAfterCommit();
-        MeetingRoomCancelAnalyzed meetingRoomCancelAnalyzed = new MeetingRoomCancelAnalyzed(reservationStatistics);
-        meetingRoomCancelAnalyzed.publishAfterCommit();
-        */
 
         /** Example 2:  finding and process
         

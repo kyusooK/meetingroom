@@ -1,17 +1,19 @@
 package meetingroom.domain;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
+import javax.persistence.PreRemove;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
+
 import lombok.Data;
 import meetingroom.ResourcemanagementApplication;
-import meetingroom.domain.FacilityCreated;
-import meetingroom.domain.FacilityDecreased;
-import meetingroom.domain.FacilityDeleted;
-import meetingroom.domain.FacilityModified;
 
 @Entity
 @Table(name = "FacilityRequest_table")
@@ -71,7 +73,6 @@ public class FacilityRequest {
         facilityDecreased.publishAfterCommit();
         */
 
-        /** Example 2:  finding and process
         
         // if reservationCreated.facilityRequestIdmeetingRoomId exists, use it
         
@@ -79,16 +80,15 @@ public class FacilityRequest {
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCreated.getFacilityRequestId(), Map.class);
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCreated.getMeetingRoomId(), Map.class);
 
-        repository().findById(reservationCreated.get???()).ifPresent(facilityRequest->{
+        // repository().findById(reservationCreated.getFacilityRequestId()).ifPresent(facilityRequest->{
             
-            facilityRequest // do something
-            repository().save(facilityRequest);
+        //     facilityRequest.setQuantity(facilityRequest.getQuantity() - 1); // do something
+        //     repository().save(facilityRequest);
 
-            FacilityDecreased facilityDecreased = new FacilityDecreased(facilityRequest);
-            facilityDecreased.publishAfterCommit();
+        //     FacilityDecreased facilityDecreased = new FacilityDecreased(facilityRequest);
+        //     facilityDecreased.publishAfterCommit();
 
-         });
-        */
+        //  });
 
     }
     //>>> Clean Arch / Port Method
