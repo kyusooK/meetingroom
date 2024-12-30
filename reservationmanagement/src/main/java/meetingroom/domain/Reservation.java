@@ -75,10 +75,20 @@ public class Reservation {
     public void createReservation(
         CreateReservationCommand createReservationCommand
     ) {
-        //implement business logic here:
+        repository().findById(getReservationId()).ifPresent(reservation->{
+            
+            reservation.setStartDate(createReservationCommand.getStartDate());
+            reservation.setEndDate(createReservationCommand.getEndDate());
+            reservation.setMeetingName(createReservationCommand.getMeetingName());
+            reservation.setReservationStatus(createReservationCommand.getReservationStatus());
+            reservation.setUserId(createReservationCommand.getUserId());
+            reservation.setFacilityRequestId(createReservationCommand.getFacilityRequestId());
+            repository().save(reservation);
 
-        ReservationCreated reservationCreated = new ReservationCreated(this);
-        reservationCreated.publishAfterCommit();
+            ReservationCreated reservationCreated = new ReservationCreated(this);
+            reservationCreated.publishAfterCommit();
+
+        });
     }
 
     //>>> Clean Arch / Port Method

@@ -10,5 +10,6 @@ import meetingroom.infra.AbstractEvent;
 public class ReservationCancelled extends AbstractEvent {
 
     private Long reservationId;
+    private Long roomId;
     private Object reservationStatus;
 }
