@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PostPersist;
+import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -55,11 +56,8 @@ public class Reservation {
         meetingRoomRegistered.publishAfterCommit();
     }
 
-    @PrePersist
-    public void onPrePersist() {}
-
-    @PreUpdate
-    public void onPreUpdate() {
+    @PostUpdate
+    public void onPostUpdate() {
         ReservationModified reservationModified = new ReservationModified(this);
         reservationModified.publishAfterCommit();
     }
@@ -110,9 +108,9 @@ public class Reservation {
     public static void registerMeetingRoom(RoomCreated roomCreated) {
         Reservation reservation = new Reservation();
         reservation.setRoomId(roomCreated.getId());
-        reservation.setMeetingName(roomCreated.getRoomName());
         reservation.setLocation(roomCreated.getLocation());
-        reservation.setReservationStatus(ReservationStatus.RESERVED);
+        reservation.setReservationStatus(ReservationStatus.AVAILABLED);
+        reservation.setRoomName(roomCreated.getRoomName());
         repository().save(reservation);
 
         MeetingRoomRegistered meetingRoomRegistered = new MeetingRoomRegistered(reservation);

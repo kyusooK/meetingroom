@@ -35,8 +35,6 @@ public class MeetingRoom {
         RoomCreated roomCreated = new RoomCreated(this);
         roomCreated.publishAfterCommit();
 
-        RoomStatusUpdated roomStatusUpdated = new RoomStatusUpdated(this);
-        roomStatusUpdated.publishAfterCommit();
     }
 
     @PreUpdate

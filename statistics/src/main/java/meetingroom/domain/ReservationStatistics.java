@@ -30,15 +30,6 @@ public class ReservationStatistics {
 
     @PostPersist
     public void onPostPersist() {
-        MeetingRoomReservationAnalyzed meetingRoomReservationAnalyzed = new MeetingRoomReservationAnalyzed(
-            this
-        );
-        meetingRoomReservationAnalyzed.publishAfterCommit();
-
-        MeetingRoomCancelAnalyzed meetingRoomCancelAnalyzed = new MeetingRoomCancelAnalyzed(
-            this
-        );
-        meetingRoomCancelAnalyzed.publishAfterCommit();
     }
 
     public static ReservationStatisticsRepository repository() {

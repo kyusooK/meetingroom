@@ -18,23 +18,48 @@ public class FacilityHistoryViewHandler {
     private FacilityHistoryRepository facilityHistoryRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void whenUsingFacilityAnalyzed_then_CREATE_1(
-        @Payload UsingFacilityAnalyzed usingFacilityAnalyzed
+    public void whenUsingFacilityRegistered_then_CREATE_1(
+        @Payload UsingFacilityRegistered usingFacilityRegistered
     ) {
         try {
-            if (!usingFacilityAnalyzed.validate()) return;
+            if (!usingFacilityRegistered.validate()) return;
 
             // view 객체 생성
             FacilityHistory facilityHistory = new FacilityHistory();
             // view 객체에 이벤트의 Value 를 set 함
             facilityHistory.setFacilityName(
-                usingFacilityAnalyzed.getFacilityName()
+                usingFacilityRegistered.getFacilityName()
             );
             facilityHistory.setFacilityCount(
-                String.valueOf(usingFacilityAnalyzed.getFacilityCount())
+                String.valueOf(usingFacilityRegistered.getFacilityCount())
             );
             // view 레파지 토리에 save
             facilityHistoryRepository.save(facilityHistory);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenUsingFacilityAnalyzed_then_UPDATE_1(
+        @Payload UsingFacilityAnalyzed usingFacilityAnalyzed
+    ) {
+        try {
+            if (!usingFacilityAnalyzed.validate()) return;
+            // view 객체 조회
+            Optional<FacilityHistory> facilityHistoryOptional = facilityHistoryRepository.findById(
+                usingFacilityAnalyzed.getFacilityId()
+            );
+
+            if (facilityHistoryOptional.isPresent()) {
+                FacilityHistory facilityHistory = facilityHistoryOptional.get();
+                // view 객체에 이벤트의 eventDirectValue 를 set 함
+                facilityHistory.setFacilityCount(
+                    String.valueOf(usingFacilityAnalyzed.getFacilityCount() + 1)
+                );
+                // view 레파지 토리에 save
+                facilityHistoryRepository.save(facilityHistory);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

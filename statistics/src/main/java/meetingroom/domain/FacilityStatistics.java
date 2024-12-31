@@ -24,14 +24,6 @@ public class FacilityStatistics {
 
     private Integer facilityCount;
 
-    @PostPersist
-    public void onPostPersist() {
-        UsingFacilityAnalyzed usingFacilityAnalyzed = new UsingFacilityAnalyzed(
-            this
-        );
-        usingFacilityAnalyzed.publishAfterCommit();
-    }
-
     public static FacilityStatisticsRepository repository() {
         FacilityStatisticsRepository facilityStatisticsRepository = StatisticsApplication.applicationContext.getBean(
             FacilityStatisticsRepository.class
@@ -43,29 +35,24 @@ public class FacilityStatistics {
     public static void analyzeUsingFacility(
         FacilityDecreased facilityDecreased
     ) {
-        //implement business logic here:
 
-        /** Example 1:  new item 
-        FacilityStatistics facilityStatistics = new FacilityStatistics();
-        repository().save(facilityStatistics);
-
-        UsingFacilityAnalyzed usingFacilityAnalyzed = new UsingFacilityAnalyzed(facilityStatistics);
-        usingFacilityAnalyzed.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-
-        repository().findById(facilityDecreased.get???()).ifPresent(facilityStatistics->{
-            
-            facilityStatistics // do something
+        repository().findByFacilityName(facilityDecreased.getResourceType().toString()).ifPresentOrElse(facilityStatistics->{
+            facilityStatistics.setFacilityCount(facilityStatistics.getFacilityCount() + 1);
             repository().save(facilityStatistics);
 
             UsingFacilityAnalyzed usingFacilityAnalyzed = new UsingFacilityAnalyzed(facilityStatistics);
             usingFacilityAnalyzed.publishAfterCommit();
 
-         });
-        */
+        },
+        () -> {
+            FacilityStatistics newStatistics = new FacilityStatistics();
+            newStatistics.setFacilityName(facilityDecreased.getResourceType().toString());
+            newStatistics.setFacilityCount(1);
+            repository().save(newStatistics);
+
+            UsingFacilityRegistered usingFacilityRegistered = new UsingFacilityRegistered(newStatistics);
+            usingFacilityRegistered.publishAfterCommit();
+        });
 
     }
     //>>> Clean Arch / Port Method
