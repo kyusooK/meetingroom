@@ -39,7 +39,8 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
 
-    private String userId;
+    @Embedded
+    private UserId userId;
 
     @Embedded
     private FacilityRequestId facilityRequestId;
@@ -79,7 +80,6 @@ public class Reservation {
             reservation.setEndDate(createReservationCommand.getEndDate());
             reservation.setMeetingName(createReservationCommand.getMeetingName());
             reservation.setReservationStatus(createReservationCommand.getReservationStatus());
-            reservation.setUserId(createReservationCommand.getUserId());
             reservation.setFacilityRequestId(createReservationCommand.getFacilityRequestId());
             repository().save(reservation);
 
