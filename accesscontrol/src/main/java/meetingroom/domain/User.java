@@ -23,6 +23,8 @@ public class User {
 
     private String rank;
 
+    private String department;
+
     @PostPersist
     public void onPostPersist() {
         ReservationAuthorized reservationAuthorized = new ReservationAuthorized(
