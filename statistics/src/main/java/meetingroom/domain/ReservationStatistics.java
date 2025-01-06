@@ -49,7 +49,7 @@ public class ReservationStatistics {
     }
 
     //<<< Clean Arch / Port Method
-    public static void analyzeReservation(
+    public static void analyzeReservationMeeting(
         ReservationCreated reservationCreated
     ) {
         //implement business logic here:
@@ -60,16 +60,15 @@ public class ReservationStatistics {
 
         MeetingRoomReservationAnalyzed meetingRoomReservationAnalyzed = new MeetingRoomReservationAnalyzed(reservationStatistics);
         meetingRoomReservationAnalyzed.publishAfterCommit();
-        MeetingRoomCancelAnalyzed meetingRoomCancelAnalyzed = new MeetingRoomCancelAnalyzed(reservationStatistics);
-        meetingRoomCancelAnalyzed.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
         
-        // if reservationCreated.facilityRequestIdmeetingRoomId exists, use it
+        // if reservationCreated.facilityRequestIduserIdmeetingRoomId exists, use it
         
         // ObjectMapper mapper = new ObjectMapper();
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCreated.getFacilityRequestId(), Map.class);
+        // Map<String, Object> reservationMap = mapper.convertValue(reservationCreated.getUserId(), Map.class);
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCreated.getMeetingRoomId(), Map.class);
 
         repository().findById(reservationCreated.get???()).ifPresent(reservationStatistics->{
@@ -79,8 +78,6 @@ public class ReservationStatistics {
 
             MeetingRoomReservationAnalyzed meetingRoomReservationAnalyzed = new MeetingRoomReservationAnalyzed(reservationStatistics);
             meetingRoomReservationAnalyzed.publishAfterCommit();
-            MeetingRoomCancelAnalyzed meetingRoomCancelAnalyzed = new MeetingRoomCancelAnalyzed(reservationStatistics);
-            meetingRoomCancelAnalyzed.publishAfterCommit();
 
          });
         */
@@ -89,7 +86,7 @@ public class ReservationStatistics {
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
-    public static void analyzeReservation(
+    public static void analyzeCancelReservation(
         ReservationCancelled reservationCancelled
     ) {
         //implement business logic here:
@@ -98,18 +95,15 @@ public class ReservationStatistics {
         ReservationStatistics reservationStatistics = new ReservationStatistics();
         repository().save(reservationStatistics);
 
-        MeetingRoomReservationAnalyzed meetingRoomReservationAnalyzed = new MeetingRoomReservationAnalyzed(reservationStatistics);
-        meetingRoomReservationAnalyzed.publishAfterCommit();
-        MeetingRoomCancelAnalyzed meetingRoomCancelAnalyzed = new MeetingRoomCancelAnalyzed(reservationStatistics);
-        meetingRoomCancelAnalyzed.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
         
-        // if reservationCancelled.facilityRequestIdmeetingRoomId exists, use it
+        // if reservationCancelled.facilityRequestIduserIdmeetingRoomId exists, use it
         
         // ObjectMapper mapper = new ObjectMapper();
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCancelled.getFacilityRequestId(), Map.class);
+        // Map<String, Object> reservationMap = mapper.convertValue(reservationCancelled.getUserId(), Map.class);
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCancelled.getMeetingRoomId(), Map.class);
 
         repository().findById(reservationCancelled.get???()).ifPresent(reservationStatistics->{
@@ -117,10 +111,6 @@ public class ReservationStatistics {
             reservationStatistics // do something
             repository().save(reservationStatistics);
 
-            MeetingRoomReservationAnalyzed meetingRoomReservationAnalyzed = new MeetingRoomReservationAnalyzed(reservationStatistics);
-            meetingRoomReservationAnalyzed.publishAfterCommit();
-            MeetingRoomCancelAnalyzed meetingRoomCancelAnalyzed = new MeetingRoomCancelAnalyzed(reservationStatistics);
-            meetingRoomCancelAnalyzed.publishAfterCommit();
 
          });
         */

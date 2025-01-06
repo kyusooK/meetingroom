@@ -13,6 +13,7 @@ public class ReservationCancelled extends AbstractEvent {
 
     private Long reservationId;
     private ReservationStatus reservationStatus;
+    private Long roomId;
 
     public ReservationCancelled(Reservation aggregate) {
         super(aggregate);

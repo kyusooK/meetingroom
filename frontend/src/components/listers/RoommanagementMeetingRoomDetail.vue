@@ -12,6 +12,12 @@
                 <String label="Location" v-model="item.location" :editMode="editMode" @change="change" />
             </div>
             <ReservationStatus offline label="ReservationStatus" v-model="item.reservationStatus" :editMode="false" :key="false" @change="change" />
+            <div>
+                <String label="Rank" v-model="item.rank" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="Department" v-model="item.department" :editMode="editMode" @change="change" />
+            </div>
         </v-card-text>
 
         <v-card-actions>

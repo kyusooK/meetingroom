@@ -73,10 +73,11 @@ public class FacilityRequest {
 
         /** Example 2:  finding and process
         
-        // if reservationCreated.facilityRequestIdmeetingRoomId exists, use it
+        // if reservationCreated.facilityRequestIduserIdmeetingRoomId exists, use it
         
         // ObjectMapper mapper = new ObjectMapper();
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCreated.getFacilityRequestId(), Map.class);
+        // Map<String, Object> reservationMap = mapper.convertValue(reservationCreated.getUserId(), Map.class);
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCreated.getMeetingRoomId(), Map.class);
 
         repository().findById(reservationCreated.get???()).ifPresent(facilityRequest->{

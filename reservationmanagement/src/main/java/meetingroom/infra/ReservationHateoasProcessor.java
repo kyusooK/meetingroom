@@ -28,6 +28,13 @@ public class ReservationHateoasProcessor
                 )
                 .withRel("cancelreservation")
         );
+        model.add(
+            Link
+                .of(
+                    model.getRequiredLink("self").getHref() + "/completemeeting"
+                )
+                .withRel("completemeeting")
+        );
 
         return model;
     }

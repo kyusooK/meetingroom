@@ -11,4 +11,5 @@ public class ReservationCancelled extends AbstractEvent {
 
     private Long reservationId;
     private Object reservationStatus;
+    private Long roomId;
 }

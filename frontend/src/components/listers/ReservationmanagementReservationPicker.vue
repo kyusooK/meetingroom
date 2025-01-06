@@ -27,16 +27,19 @@
                                 MeetingName :  {{item.meetingName }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                Lacation :  {{item.lacation }}
+                                Location :  {{item.location }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
                                 ReservationStatus :  {{item.reservationStatus }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                UserId :  {{item.userId }}
+                                FacilityRequestId :  {{item.facilityRequestId }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                FacilityRequestId :  {{item.facilityRequestId }}
+                                RoomName :  {{item.roomName }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>
+                                UserId :  {{item.userId }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
                                 MeetingRoomId :  {{item.meetingRoomId }}
@@ -92,6 +95,8 @@
                 if(val != undefined) {
                     var arr = this.list[val]._links.self.href.split('/');
                     obj['reservationId'] = arr[4]; 
+                    
+                    
                     
                     
                     

@@ -1,123 +1,147 @@
 package meetingroom.domain;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import javax.persistence.*;
-import lombok.Data;
-import meetingroom.ReservationmanagementApplication;
-import meetingroom.domain.MeetingRoomRegistered;
+import meetingroom.domain.ReservationRejected;
 import meetingroom.domain.ReservationModified;
+import meetingroom.ReservationmanagementApplication;
+import javax.persistence.*;
+import java.util.List;
+import lombok.Data;
+import java.util.Date;
+import java.time.LocalDate;
+import java.util.Map;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 @Entity
-@Table(name = "Reservation_table")
+@Table(name="Reservation_table")
 @Data
+
 //<<< DDD / Aggregate Root
-public class Reservation {
+public class Reservation  {
 
+
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    
+    
+    
+    
     private Long reservationId;
-
+    
+    
+    
+    
     private Date startDate;
-
+    
+    
+    
+    
     private Date endDate;
-
+    
+    
+    
+    
     private String meetingName;
-
-    private String lacation;
-
+    
+    
+    
+    
+    private String location;
+    
+    
+    
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
-
-    private String userId;
-
+    
+    
+    
     @Embedded
     private FacilityRequestId facilityRequestId;
-
-    private Long roomId;
-
+    
+    
+    
+    
     private String roomName;
+    
+    
+    
+    @Embedded
+    private UserId userId;
+    
+    
+    
+    @Embedded
+    private MeetingRoomId meetingRoomId;
 
     @PostPersist
-    public void onPostPersist() {
-        MeetingRoomRegistered meetingRoomRegistered = new MeetingRoomRegistered(
-            this
-        );
-        meetingRoomRegistered.publishAfterCommit();
+    public void onPostPersist(){
+
+
+        ReservationRejected reservationRejected = new ReservationRejected(this);
+        reservationRejected.publishAfterCommit();
+
+    
     }
-
     @PrePersist
-    public void onPrePersist() {}
-
+    public void onPrePersist(){
+    
+    }
     @PreUpdate
-    public void onPreUpdate() {
+    public void onPreUpdate(){
+
+
         ReservationModified reservationModified = new ReservationModified(this);
         reservationModified.publishAfterCommit();
+
+    
     }
 
-    public static ReservationRepository repository() {
-        ReservationRepository reservationRepository = ReservationmanagementApplication.applicationContext.getBean(
-            ReservationRepository.class
-        );
+    public static ReservationRepository repository(){
+        ReservationRepository reservationRepository = ReservationmanagementApplication.applicationContext.getBean(ReservationRepository.class);
         return reservationRepository;
     }
 
-    //<<< Clean Arch / Port Method
-    public void createReservation(
-        CreateReservationCommand createReservationCommand
-    ) {
+
+
+//<<< Clean Arch / Port Method
+    public void createReservation(CreateReservationCommand createReservationCommand){
+        
         //implement business logic here:
+        
+
+        FacilityRequest facilityRequest = ReservationApplication.applicationContext
+            .getBean(meetingroom.external.FacilityRequestService.class)
+            .getFacility(get??);
 
         ReservationCreated reservationCreated = new ReservationCreated(this);
         reservationCreated.publishAfterCommit();
     }
-
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
-    public void cancelReservation(
-        CancelReservationCommand cancelReservationCommand
-    ) {
+//>>> Clean Arch / Port Method
+//<<< Clean Arch / Port Method
+    public void cancelReservation(CancelReservationCommand cancelReservationCommand){
+        
         //implement business logic here:
-
-        ReservationCancelled reservationCancelled = new ReservationCancelled(
-            this
-        );
-        reservationCancelled.publishAfterCommit();
-    }
-
-    //>>> Clean Arch / Port Method
-
-    //<<< Clean Arch / Port Method
-    public static void registerMeetingRoom(RoomCreated roomCreated) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Reservation reservation = new Reservation();
-        repository().save(reservation);
-
-        MeetingRoomRegistered meetingRoomRegistered = new MeetingRoomRegistered(reservation);
-        meetingRoomRegistered.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
         
 
-        repository().findById(roomCreated.get???()).ifPresent(reservation->{
-            
-            reservation // do something
-            repository().save(reservation);
 
-            MeetingRoomRegistered meetingRoomRegistered = new MeetingRoomRegistered(reservation);
-            meetingRoomRegistered.publishAfterCommit();
-
-         });
-        */
-
+        ReservationCancelled reservationCancelled = new ReservationCancelled(this);
+        reservationCancelled.publishAfterCommit();
     }
-    //>>> Clean Arch / Port Method
+//>>> Clean Arch / Port Method
+//<<< Clean Arch / Port Method
+    public void completemeeting(){
+        
+        //implement business logic here:
+        
+
+
+        MeetingCompleted meetingCompleted = new MeetingCompleted(this);
+        meetingCompleted.publishAfterCommit();
+    }
+//>>> Clean Arch / Port Method
+
+
 
 }
 //>>> DDD / Aggregate Root

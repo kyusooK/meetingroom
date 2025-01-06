@@ -27,32 +27,18 @@ public class PolicyHandler {
         value = KafkaProcessor.INPUT,
         condition = "headers['type']=='ReservationCreated'"
     )
-    public void wheneverReservationCreated_CreateCalendar(
+    public void wheneverReservationCreated_RegisterCalendar(
         @Payload ReservationCreated reservationCreated
     ) {
         ReservationCreated event = reservationCreated;
         System.out.println(
-            "\n\n##### listener CreateCalendar : " + reservationCreated + "\n\n"
+            "\n\n##### listener RegisterCalendar : " +
+            reservationCreated +
+            "\n\n"
         );
 
         // Sample Logic //
-        Notification.createCalendar(event);
-    }
-
-    @StreamListener(
-        value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='ReservationCreated'"
-    )
-    public void wheneverReservationCreated_SendToUser(
-        @Payload ReservationCreated reservationCreated
-    ) {
-        ReservationCreated event = reservationCreated;
-        System.out.println(
-            "\n\n##### listener SendToUser : " + reservationCreated + "\n\n"
-        );
-
-        // Sample Logic //
-        Notification.sendToUser(event);
+        Notification.registerCalendar(event);
     }
 
     @StreamListener(
@@ -81,6 +67,22 @@ public class PolicyHandler {
         ReservationCancelled event = reservationCancelled;
         System.out.println(
             "\n\n##### listener SendToUser : " + reservationCancelled + "\n\n"
+        );
+
+        // Sample Logic //
+        Notification.sendToUser(event);
+    }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='ReservationCreated'"
+    )
+    public void wheneverReservationCreated_SendToUser(
+        @Payload ReservationCreated reservationCreated
+    ) {
+        ReservationCreated event = reservationCreated;
+        System.out.println(
+            "\n\n##### listener SendToUser : " + reservationCreated + "\n\n"
         );
 
         // Sample Logic //

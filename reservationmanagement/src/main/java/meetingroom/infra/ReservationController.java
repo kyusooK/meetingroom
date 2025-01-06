@@ -71,5 +71,28 @@ public class ReservationController {
         reservationRepository.save(reservation);
         return reservation;
     }
+
+    @RequestMapping(
+        value = "/reservations/{id}/completemeeting",
+        method = RequestMethod.PUT,
+        produces = "application/json;charset=UTF-8"
+    )
+    public Reservation completemeeting(
+        @PathVariable(value = "id") Long id,
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws Exception {
+        System.out.println("##### /reservation/completemeeting  called #####");
+        Optional<Reservation> optionalReservation = reservationRepository.findById(
+            id
+        );
+
+        optionalReservation.orElseThrow(() -> new Exception("No Entity Found"));
+        Reservation reservation = optionalReservation.get();
+        reservation.completemeeting();
+
+        reservationRepository.save(reservation);
+        return reservation;
+    }
 }
 //>>> Clean Arch / Inbound Adaptor

@@ -12,7 +12,7 @@ spring:
         - id: reservationmanagement
           uri: http://localhost:8082
           predicates:
-            - Path=/reservations/**, /getMeetingRooms/**
+            - Path=/reservations/**, /myReservations/**
         - id: calendarintegration
           uri: http://localhost:8083
           predicates:
@@ -32,7 +32,7 @@ spring:
         - id: roommanagement
           uri: http://localhost:8087
           predicates:
-            - Path=/meetingRooms/**, 
+            - Path=/meetingRooms/**, /getMeetingRooms/**
         - id: frontend
           uri: http://localhost:8080
           predicates:

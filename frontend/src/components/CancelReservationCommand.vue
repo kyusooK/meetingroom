@@ -5,7 +5,7 @@
         </v-card-title>
 
         <v-card-text>
-            <String label="ReservationId" v-model="value.reservationId" :editMode="editMode"/>
+            <Number label="ReservationId" v-model="value.reservationId" :editMode="editMode"/>
             <ReservationStatus offline label="ReservationStatus" v-model="value.reservationStatus" :editMode="editMode" @change="change"/>
         </v-card-text>
 
@@ -42,7 +42,7 @@
             value: {},
         }),
         created() {
-            this.value.reservationId = '';
+            this.value.reservationId = 0;
             this.value.reservationStatus = {};
         },
         watch: {

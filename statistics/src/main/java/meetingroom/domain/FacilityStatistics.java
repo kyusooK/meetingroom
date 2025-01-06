@@ -9,6 +9,7 @@ import javax.persistence.*;
 import lombok.Data;
 import meetingroom.StatisticsApplication;
 import meetingroom.domain.UsingFacilityAnalyzed;
+import meetingroom.domain.UsingFacilityRegistered;
 
 @Entity
 @Table(name = "FacilityStatistics_table")
@@ -30,6 +31,11 @@ public class FacilityStatistics {
             this
         );
         usingFacilityAnalyzed.publishAfterCommit();
+
+        UsingFacilityRegistered usingFacilityRegistered = new UsingFacilityRegistered(
+            this
+        );
+        usingFacilityRegistered.publishAfterCommit();
     }
 
     public static FacilityStatisticsRepository repository() {
@@ -63,6 +69,35 @@ public class FacilityStatistics {
 
             UsingFacilityAnalyzed usingFacilityAnalyzed = new UsingFacilityAnalyzed(facilityStatistics);
             usingFacilityAnalyzed.publishAfterCommit();
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void registerUsingFacility(FacilityCreated facilityCreated) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        FacilityStatistics facilityStatistics = new FacilityStatistics();
+        repository().save(facilityStatistics);
+
+        UsingFacilityRegistered usingFacilityRegistered = new UsingFacilityRegistered(facilityStatistics);
+        usingFacilityRegistered.publishAfterCommit();
+        */
+
+        /** Example 2:  finding and process
+        
+
+        repository().findById(facilityCreated.get???()).ifPresent(facilityStatistics->{
+            
+            facilityStatistics // do something
+            repository().save(facilityStatistics);
+
+            UsingFacilityRegistered usingFacilityRegistered = new UsingFacilityRegistered(facilityStatistics);
+            usingFacilityRegistered.publishAfterCommit();
 
          });
         */

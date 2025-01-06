@@ -46,8 +46,8 @@
             value: {},
         }),
         created() {
-            this.value.startDate = '2024-12-27';
-            this.value.endDate = '2024-12-27';
+            this.value.startDate = '2025-01-06';
+            this.value.endDate = '2025-01-06';
             this.value.meetingName = '';
             this.value.reservationStatus = {};
             this.value.userId = '';

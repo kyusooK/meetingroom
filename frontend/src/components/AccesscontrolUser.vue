@@ -37,7 +37,7 @@
                     text
                     @click="save"
                 >
-                    예약 권한 검증
+                    사용자 등록
                 </v-btn>
                 <v-btn
                     color="primary"

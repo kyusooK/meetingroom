@@ -29,6 +29,10 @@ public class MeetingRoom {
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
 
+    private String rank;
+
+    private String department;
+
     @PostPersist
     public void onPostPersist() {
         RoomCreated roomCreated = new RoomCreated(this);
@@ -65,10 +69,11 @@ public class MeetingRoom {
 
         /** Example 2:  finding and process
         
-        // if reservationCreated.facilityRequestIdmeetingRoomId exists, use it
+        // if reservationCreated.facilityRequestIduserIdmeetingRoomId exists, use it
         
         // ObjectMapper mapper = new ObjectMapper();
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCreated.getFacilityRequestId(), Map.class);
+        // Map<String, Object> reservationMap = mapper.convertValue(reservationCreated.getUserId(), Map.class);
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCreated.getMeetingRoomId(), Map.class);
 
         repository().findById(reservationCreated.get???()).ifPresent(meetingRoom->{
@@ -101,10 +106,11 @@ public class MeetingRoom {
 
         /** Example 2:  finding and process
         
-        // if reservationCancelled.facilityRequestIdmeetingRoomId exists, use it
+        // if reservationCancelled.facilityRequestIduserIdmeetingRoomId exists, use it
         
         // ObjectMapper mapper = new ObjectMapper();
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCancelled.getFacilityRequestId(), Map.class);
+        // Map<String, Object> reservationMap = mapper.convertValue(reservationCancelled.getUserId(), Map.class);
         // Map<Long, Object> reservationMap = mapper.convertValue(reservationCancelled.getMeetingRoomId(), Map.class);
 
         repository().findById(reservationCancelled.get???()).ifPresent(meetingRoom->{

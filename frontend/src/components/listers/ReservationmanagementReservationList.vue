@@ -49,6 +49,7 @@
                             
                             
                             
+                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
@@ -56,10 +57,11 @@
                             [ StartDate :  {{data.startDate }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ EndDate :  {{data.endDate }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ MeetingName :  {{data.meetingName }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ Lacation :  {{data.lacation }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Location :  {{data.location }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ ReservationStatus :  {{data.reservationStatus }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ UserId :  {{data.userId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ FacilityRequestId :  {{data.facilityRequestId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ RoomName :  {{data.roomName }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ UserId :  {{data.userId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ MeetingRoomId :  {{data.meetingRoomId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
@@ -128,14 +130,15 @@
             this.values = temp.data._embedded.reservations;
             
             this.newValue = {
-                'reservationId': '',
-                'startDate': '2024-12-27',
-                'endDate': '2024-12-27',
+                'reservationId': 0,
+                'startDate': '2025-01-06',
+                'endDate': '2025-01-06',
                 'meetingName': '',
-                'lacation': '',
+                'location': '',
                 'reservationStatus': '',
-                'userId': '',
                 'facilityRequestId': {},
+                'roomName': '',
+                'userId': {},
                 'meetingRoomId': {},
             }
         },

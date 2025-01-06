@@ -70,6 +70,8 @@
                     { text: "roomName", value: "roomName" },
                     { text: "location", value: "location" },
                     { text: "reservationStatus", value: "reservationStatus" },
+                    { text: "rank", value: "rank" },
+                    { text: "department", value: "department" },
                 ],
             meetingRoom : [],
             newValue: {},
@@ -90,6 +92,8 @@
                 'roomName': '',
                 'location': '',
                 'reservationStatus': '',
+                'rank': '',
+                'department': '',
             }
         },
         methods: {

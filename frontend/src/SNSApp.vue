@@ -46,13 +46,13 @@
 
                     <v-list-item
                         class="px-2"
-                        key="getMeetingRooms"
-                        to="/reservationmanagements/getMeetingRooms"
+                        key="myReservations"
+                        to="/reservationmanagements/myReservations"
                         @click="changeUrl()"
                         color="primary"
                         style="font-weight:700;"
                     >
-                        GetMeetingRoom
+                        MyReservation
                     </v-list-item>
                     <v-list-item
                         class="px-2"
@@ -155,6 +155,16 @@
                     </v-list-item>
 
 
+                    <v-list-item
+                        class="px-2"
+                        key="getMeetingRooms"
+                        to="/roommanagements/getMeetingRooms"
+                        @click="changeUrl()"
+                        color="primary"
+                        style="font-weight:700;"
+                    >
+                        GetMeetingRoom
+                    </v-list-item>
                 </v-list>
             </v-navigation-drawer>
         </div>
@@ -283,10 +293,10 @@ export default {
                 ImageUrl: '',
             },
             { 
-                title: '회의실 조회', 
-                description: 'GetMeetingRoom을 관리하는 화면입니다.', 
-                key: 'getMeetingRooms', 
-                route: '/reservationmanagements/getMeetingRooms',
+                title: '예약 내역 조회', 
+                description: 'My Reservation을 관리하는 화면입니다.', 
+                key: 'myReservations', 
+                route: '/reservationmanagements/myReservations',
                 ImageUrl: '',
             },
             { 
@@ -308,6 +318,13 @@ export default {
                 description: 'FacilityHistory을 관리하는 화면입니다.', 
                 key: 'facilityHistories', 
                 route: '/statistics/facilityHistories',
+                ImageUrl: '',
+            },
+            { 
+                title: '회의실 조회', 
+                description: 'GetMeetingRoom을 관리하는 화면입니다.', 
+                key: 'getMeetingRooms', 
+                route: '/roommanagements/getMeetingRooms',
                 ImageUrl: '',
             },
             

@@ -19,6 +19,8 @@
             <String label="회의실이름" v-model="value.roomName" :editMode="editMode" :inputUI="''"/>
             <String label="회의실위치" v-model="value.location" :editMode="editMode" :inputUI="''"/>
             <ReservationStatus offline label="reservationStatus" v-model="value.reservationStatus" :editMode="editMode" @change="change"/>
+            <String label="Rank" v-model="value.rank" :editMode="editMode" :inputUI="''"/>
+            <String label="Department" v-model="value.department" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">

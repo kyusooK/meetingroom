@@ -52,12 +52,12 @@
             }
             if(typeof this.value === 'object') {
                 if(!('usingStartDate' in this.value)) {
-                    this.value.usingStartDate = '2024-12-27';
+                    this.value.usingStartDate = '2025-01-06';
                 }
             }
             if(typeof this.value === 'object') {
                 if(!('usingEndDate' in this.value)) {
-                    this.value.usingEndDate = '2024-12-27';
+                    this.value.usingEndDate = '2025-01-06';
                 }
             }
             if(typeof this.value === 'object') {

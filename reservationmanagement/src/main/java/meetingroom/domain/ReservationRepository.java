@@ -14,11 +14,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
     path = "reservations"
 )
 public interface ReservationRepository
-    extends PagingAndSortingRepository<Reservation, Long> {
-    @Query(
-        value = "select reservation " +
-        "from Reservation reservation " +
-        "where(:roomId is null or reservation.roomId = :roomId) and (:roomName is null or reservation.roomName like %:roomName%)"
-    )
-    Reservation getMeetingRoom(Long roomId, String roomName);
-}
+    extends PagingAndSortingRepository<Reservation, Long> {}

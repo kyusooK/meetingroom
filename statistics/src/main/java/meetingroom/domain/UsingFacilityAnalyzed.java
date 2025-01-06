@@ -11,7 +11,7 @@ import meetingroom.infra.AbstractEvent;
 @ToString
 public class UsingFacilityAnalyzed extends AbstractEvent {
 
-    private Long statisticsId;
+    private Long facilityId;
     private String facilityName;
     private Integer facilityCount;
 

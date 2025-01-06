@@ -107,6 +107,8 @@
                 'roomName': '',
                 'location': '',
                 'reservationStatus': '',
+                'rank': '',
+                'department': '',
             }
         },
         methods:{

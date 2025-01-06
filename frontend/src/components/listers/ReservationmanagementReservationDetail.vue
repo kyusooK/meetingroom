@@ -6,7 +6,7 @@
 
         <v-card-text>
             <div>
-                <String label="ReservationId" v-model="item.reservationId" :editMode="editMode" @change="change" />
+                <Number label="ReservationId" v-model="item.reservationId" :editMode="editMode" @change="change" />
             </div>
             <div>
                 <Date label="StartDate" v-model="item.startDate" :editMode="editMode" @change="change" />
@@ -18,13 +18,14 @@
                 <String label="MeetingName" v-model="item.meetingName" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <String label="Lacation" v-model="item.lacation" :editMode="editMode" @change="change" />
+                <String label="Location" v-model="item.location" :editMode="editMode" @change="change" />
             </div>
             <ReservationStatus offline label="ReservationStatus" v-model="item.reservationStatus" :editMode="false" :key="false" @change="change" />
-            <div>
-                <String label="UserId" v-model="item.userId" :editMode="editMode" @change="change" />
-            </div>
             <FacilityRequestId offline label="FacilityRequestId" v-model="item.facilityRequestId" :editMode="false" :key="false" @change="change" />
+            <div>
+                <String label="RoomName" v-model="item.roomName" :editMode="editMode" @change="change" />
+            </div>
+            <UserId offline label="UserId" v-model="item.userId" :editMode="false" :key="false" @change="change" />
             <MeetingRoomId offline label="MeetingRoomId" v-model="item.meetingRoomId" :editMode="false" :key="false" @change="change" />
         </v-card-text>
 

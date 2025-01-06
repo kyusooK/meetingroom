@@ -104,14 +104,15 @@
             me.values = temp.data._embedded.reservations;
             
             me.newValue = {
-                'reservationId': '',
-                'startDate': '2024-12-27',
-                'endDate': '2024-12-27',
+                'reservationId': 0,
+                'startDate': '2025-01-06',
+                'endDate': '2025-01-06',
                 'meetingName': '',
-                'lacation': '',
+                'location': '',
                 'reservationStatus': '',
-                'userId': '',
                 'facilityRequestId': {},
+                'roomName': '',
+                'userId': {},
                 'meetingRoomId': {},
             }
         },

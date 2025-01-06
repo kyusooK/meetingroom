@@ -30,36 +30,18 @@ public class PolicyHandler {
         value = KafkaProcessor.INPUT,
         condition = "headers['type']=='ReservationCreated'"
     )
-    public void wheneverReservationCreated_AnalyzeReservation(
+    public void wheneverReservationCreated_AnalyzeReservationMeeting(
         @Payload ReservationCreated reservationCreated
     ) {
         ReservationCreated event = reservationCreated;
         System.out.println(
-            "\n\n##### listener AnalyzeReservation : " +
+            "\n\n##### listener AnalyzeReservationMeeting : " +
             reservationCreated +
             "\n\n"
         );
 
         // Sample Logic //
-        ReservationStatistics.analyzeReservation(event);
-    }
-
-    @StreamListener(
-        value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='ReservationCancelled'"
-    )
-    public void wheneverReservationCancelled_AnalyzeReservation(
-        @Payload ReservationCancelled reservationCancelled
-    ) {
-        ReservationCancelled event = reservationCancelled;
-        System.out.println(
-            "\n\n##### listener AnalyzeReservation : " +
-            reservationCancelled +
-            "\n\n"
-        );
-
-        // Sample Logic //
-        ReservationStatistics.analyzeReservation(event);
+        ReservationStatistics.analyzeReservationMeeting(event);
     }
 
     @StreamListener(
@@ -78,6 +60,42 @@ public class PolicyHandler {
 
         // Sample Logic //
         FacilityStatistics.analyzeUsingFacility(event);
+    }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='FacilityCreated'"
+    )
+    public void wheneverFacilityCreated_RegisterUsingFacility(
+        @Payload FacilityCreated facilityCreated
+    ) {
+        FacilityCreated event = facilityCreated;
+        System.out.println(
+            "\n\n##### listener RegisterUsingFacility : " +
+            facilityCreated +
+            "\n\n"
+        );
+
+        // Sample Logic //
+        FacilityStatistics.registerUsingFacility(event);
+    }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='ReservationCancelled'"
+    )
+    public void wheneverReservationCancelled_AnalyzeCancelReservation(
+        @Payload ReservationCancelled reservationCancelled
+    ) {
+        ReservationCancelled event = reservationCancelled;
+        System.out.println(
+            "\n\n##### listener AnalyzeCancelReservation : " +
+            reservationCancelled +
+            "\n\n"
+        );
+
+        // Sample Logic //
+        ReservationStatistics.analyzeCancelReservation(event);
     }
 }
 //>>> Clean Arch / Inbound Adaptor

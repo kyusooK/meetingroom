@@ -8,8 +8,8 @@ Vue.use(Router);
 import ReservationmanagementReservationManager from "./components/listers/ReservationmanagementReservationCards"
 import ReservationmanagementReservationDetail from "./components/listers/ReservationmanagementReservationDetail"
 
-import GetMeetingRoomView from "./components/GetMeetingRoomView"
-import GetMeetingRoomViewDetail from "./components/GetMeetingRoomViewDetail"
+import MyReservationView from "./components/MyReservationView"
+import MyReservationViewDetail from "./components/MyReservationViewDetail"
 import CalendarintegrationNotificationManager from "./components/listers/CalendarintegrationNotificationCards"
 import CalendarintegrationNotificationDetail from "./components/listers/CalendarintegrationNotificationDetail"
 
@@ -33,6 +33,8 @@ import FacilityHistoryViewDetail from "./components/FacilityHistoryViewDetail"
 import RoommanagementMeetingRoomManager from "./components/listers/RoommanagementMeetingRoomCards"
 import RoommanagementMeetingRoomDetail from "./components/listers/RoommanagementMeetingRoomDetail"
 
+import GetMeetingRoomView from "./components/GetMeetingRoomView"
+import GetMeetingRoomViewDetail from "./components/GetMeetingRoomViewDetail"
 
 export default new Router({
     // mode: 'history',
@@ -50,14 +52,14 @@ export default new Router({
             },
 
             {
-                path: '/reservationmanagements/getMeetingRooms',
-                name: 'GetMeetingRoomView',
-                component: GetMeetingRoomView
+                path: '/reservationmanagements/myReservations',
+                name: 'MyReservationView',
+                component: MyReservationView
             },
             {
-                path: '/reservationmanagements/getMeetingRooms/:id',
-                name: 'GetMeetingRoomViewDetail',
-                component: GetMeetingRoomViewDetail
+                path: '/reservationmanagements/myReservations/:id',
+                name: 'MyReservationViewDetail',
+                component: MyReservationViewDetail
             },
             {
                 path: '/calendarintegrations/notifications',
@@ -154,6 +156,16 @@ export default new Router({
                 component: RoommanagementMeetingRoomDetail
             },
 
+            {
+                path: '/roommanagements/getMeetingRooms',
+                name: 'GetMeetingRoomView',
+                component: GetMeetingRoomView
+            },
+            {
+                path: '/roommanagements/getMeetingRooms/:id',
+                name: 'GetMeetingRoomViewDetail',
+                component: GetMeetingRoomViewDetail
+            },
 
 
     ]

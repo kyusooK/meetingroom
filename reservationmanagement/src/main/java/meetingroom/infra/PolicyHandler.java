@@ -22,21 +22,5 @@ public class PolicyHandler {
 
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString) {}
-
-    @StreamListener(
-        value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='RoomCreated'"
-    )
-    public void wheneverRoomCreated_RegisterMeetingRoom(
-        @Payload RoomCreated roomCreated
-    ) {
-        RoomCreated event = roomCreated;
-        System.out.println(
-            "\n\n##### listener RegisterMeetingRoom : " + roomCreated + "\n\n"
-        );
-
-        // Sample Logic //
-        Reservation.registerMeetingRoom(event);
-    }
 }
 //>>> Clean Arch / Inbound Adaptor

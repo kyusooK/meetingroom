@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.persistence.*;
 import lombok.Data;
 import meetingroom.AccesscontrolApplication;
-import meetingroom.domain.ReservationAuthorized;
+import meetingroom.domain.UserRegistered;
 
 @Entity
 @Table(name = "User_table")
@@ -25,10 +25,8 @@ public class User {
 
     @PostPersist
     public void onPostPersist() {
-        ReservationAuthorized reservationAuthorized = new ReservationAuthorized(
-            this
-        );
-        reservationAuthorized.publishAfterCommit();
+        UserRegistered userRegistered = new UserRegistered(this);
+        userRegistered.publishAfterCommit();
     }
 
     @PrePersist

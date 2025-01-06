@@ -37,7 +37,7 @@ mvn spring-boot:run
 ## Test by API
 - reservationmanagement
 ```
- http :8088/reservations reservationId="reservationId"startDate="startDate"endDate="endDate"meetingName="meetingName"lacation="lacation"ReservationStatus = "RESERVED"userId="userId"FacilityRequestId := '{"id": 0}'MeetingRoomId := '{"id": 0}'
+ http :8088/reservations reservationId="reservationId"startDate="startDate"endDate="endDate"meetingName="meetingName"location="location"ReservationStatus = "RESERVED"FacilityRequestId := '{"id": 0}'roomName="roomName"UserId := '{"id": 0}'MeetingRoomId := '{"id": 0}'
 ```
 - calendarintegration
 ```
@@ -58,7 +58,7 @@ mvn spring-boot:run
 ```
 - roommanagement
 ```
- http :8088/meetingRooms id="id"roomName="roomName"location="location"ReservationStatus = "AVAILABLED"
+ http :8088/meetingRooms id="id"roomName="roomName"location="location"ReservationStatus = "AVAILABLED"rank="rank"department="department"
 ```
 
 

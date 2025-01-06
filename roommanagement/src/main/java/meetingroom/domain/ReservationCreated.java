@@ -13,7 +13,7 @@ public class ReservationCreated extends AbstractEvent {
     private Date startDate;
     private Date endDate;
     private String meetingName;
-    private String lacation;
+    private String location;
     private Object reservationStatus;
     private String userId;
     private Object facilityRequestId;

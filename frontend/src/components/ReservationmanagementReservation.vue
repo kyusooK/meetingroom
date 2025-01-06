@@ -16,14 +16,15 @@
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
-            <String v-if="editMode" label="ReservationId" v-model="value.reservationId" :editMode="editMode" :inputUI="''"/>
+            <Number v-if="editMode" label="ReservationId" v-model="value.reservationId" :editMode="editMode" :inputUI="''"/>
             <Date label="대여시작시간" v-model="value.startDate" :editMode="editMode" :inputUI="''"/>
             <Date label="대여종료시간" v-model="value.endDate" :editMode="editMode" :inputUI="''"/>
             <String label="회의명" v-model="value.meetingName" :editMode="editMode" :inputUI="''"/>
-            <String label="회의실 위치" v-model="value.lacation" :editMode="editMode" :inputUI="''"/>
+            <String label="회의실 위치" v-model="value.location" :editMode="editMode" :inputUI="''"/>
             <ReservationStatus offline label="reservationStatus" v-model="value.reservationStatus" :editMode="editMode" @change="change"/>
-            <String label="사용자정보" v-model="value.userId" :editMode="editMode" :inputUI="''"/>
             <FacilityRequestId offline label="facilityRequestId" v-model="value.facilityRequestId" :editMode="editMode" @change="change"/>
+            <String label="회의실명" v-model="value.roomName" :editMode="editMode" :inputUI="''"/>
+            <UserId offline label="userId" v-model="value.userId" :editMode="editMode" @change="change"/>
             <MeetingRoomId offline label="meetingRoomId" v-model="value.meetingRoomId" :editMode="editMode" @change="change"/>
         </v-card-text>
 
@@ -43,7 +44,7 @@
                     text
                     @click="save"
                 >
-                저장
+                    예약 변경
                 </v-btn>
                 <v-btn
                     color="primary"
@@ -83,14 +84,6 @@
                 v-if="!editMode"
                 color="primary"
                 text
-                @click="modifyReservation"
-            >
-                ModifyReservation
-            </v-btn>
-            <v-btn
-                v-if="!editMode"
-                color="primary"
-                text
                 @click="openCancelReservation"
             >
                 CancelReservation
@@ -101,6 +94,14 @@
                     @cancelReservation="cancelReservation"
                 ></CancelReservationCommand>
             </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="completemeeting"
+            >
+                Completemeeting
+            </v-btn>
         </v-card-actions>
 
         <v-snackbar
@@ -288,6 +289,25 @@
             },
             closeCancelReservation() {
                 this.cancelReservationDiagram = false;
+            },
+            async completemeeting() {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['completemeeting'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
         },
     }

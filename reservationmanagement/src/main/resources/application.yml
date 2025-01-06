@@ -31,12 +31,12 @@ spring:
         event-in:
           group: reservationmanagement
 #<<< EDA / Topic Name
-          destination: meetingroom
+          destination: meetingroom
 #>>> EDA / Topic Name
           contentType: application/json
         event-out:
 #<<< EDA / Topic Name
-          destination: meetingroom
+          destination: meetingroom
 #>>> EDA / Topic Name
           contentType: application/json
 
@@ -45,6 +45,10 @@ logging:
     org.hibernate.type: trace
     org.springframework.cloud: debug
 
+api:
+  url: 
+    reservationmanagement: localhost:8082 
+    
 
 server:
   port: 8082
@@ -75,10 +79,14 @@ spring:
       bindings:
         event-in:
           group: reservationmanagement
-          destination: meetingroom
+          destination: meetingroom
           contentType: application/json
         event-out:
-          destination: meetingroom
+          destination: meetingroom
           contentType: application/json
 
+api:
+  url: 
+    reservationmanagement: reservationmanagement:8080 
+    
 
